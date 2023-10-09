@@ -66,7 +66,7 @@ transform-origin: 0 50% 10px;
 }
 @keyframes mymov{ /*动画通过关键帧来声明，可以直接声明100%的样式，0%默认对应的就是静态css效果*/
     100%{
-        /* 这里可以指定任何css样式，例如width，backgroud等 */
+        /* 这里可以指定任何css样式，例如width，background等 */
         transform: rotate(45deg); 
     }
 }

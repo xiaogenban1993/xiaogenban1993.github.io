@@ -3,7 +3,7 @@
 
 一般我们都在浏览器的chat窗口中直接chat，但是想要将其集成到自己的系统中，就需要调用其API。
 # openAI
-openAI其实在chatGPT之前就有多种api，我们就以前端时间最新公开的chat的API和whisperAPI为例。
+openAI其实在chatGPT之前就有多种api，我们就以前段时间最新公开的chat的API和whisperAPI为例。
 
 需要注意的是api国内环境直接调用经常不通，最好是将代码写好之后部署到一些免费的faas平台，比如railway/vercel/netlify等等。
 

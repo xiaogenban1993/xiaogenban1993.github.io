@@ -76,14 +76,14 @@ flex能实现的一些常用案例（上面花里胡哨的其实很多都不是�
 ## 1 内部单个元素居中显示[两种方式]
 一种是认为只有一行nowrap，然后该行高度是整个容器，此时将每个元素放到行的中央即可，align-items:center
 ```html
-<div style="height:400px; backgroud: green; 
+<div style="height:400px; background: green; 
     display: flex; justify-content: center; align-items: center">
     <h1>hello world</h1>
 </div>
 ```
 另一种思路是可以有多行wrap(其实只有一行)，将第一行的维度设置到赤道center。align-content: center; flex-wrap: wrap
 ```html
-<div style="height:400px; backgroud: green; 
+<div style="height:400px; background: green; 
     display: flex; justify-content: center; align-content: center; flex-wrap: wrap">
     <h1>hello world</h1>
 </div>

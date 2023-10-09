@@ -16,7 +16,7 @@ Lock接口就是使用上面cas原理实现的锁，它基于AQS框架。以`Ree
 
 ![image](https://i.imgur.com/WP2ozNW.png)
 
-acquire函数其实非常重要，他代表了锁获取失败时候，线程的动作。aquire是AQS中定义的final方法，主要是调用tryAquire/addWaiter/acquireQueued这几个方法。
+acquire函数其实非常重要，他代表了锁获取失败时候，线程的动作。acquire是AQS中定义的final方法，主要是调用tryAquire/addWaiter/acquireQueued这几个方法。
 
 ![image](https://i.imgur.com/Se9Xsx6.png)  
 tryAquire函数：尝试获取锁，在图1中，他直接调用nonfaireTryAcquire方法，如下，这个函数也是尝试拿锁，并且加了一个如果已经拿到锁了，就`state+1`的操作。  
