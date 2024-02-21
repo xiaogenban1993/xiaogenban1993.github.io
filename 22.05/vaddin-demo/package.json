@@ -18,7 +18,7 @@
   "dependencies": {
     "@vaadin/app-layout": "^23.0.7",
     "@vaadin/vaadin-core": "^23.0.8",
-    "axios": "^0.27.2",
+    "axios": "^0.28.0",
     "lit": "^2.2.3",
     "wired-elements": "^3.0.0-rc.6"
   }
