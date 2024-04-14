@@ -1,0 +1,2 @@
+mongod &
+/app/main
