@@ -1,0 +1,6 @@
+**/node_modules
+**/target
+**/.vscode/*
+**/期货/*
+**/.next
+/public/imgur/**
