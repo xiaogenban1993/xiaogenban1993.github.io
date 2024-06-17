@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.4.4/d3.min.js" integrity="sha512-hnFpvCiJ8Fr1lYLqcw6wLgFUOEZ89kWCkO+cEekwcWPIPKyknKV1eZmSSG3UxXfsSuf+z/SgmiYB1zFOg3l2UQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<style>
+    #container{
+        height: 700px;
+        border: solid 1px black;
+    }
+    .flex{
+        display: flex;
+    }
+    .item{
+        /* margin: 10px; */
+    }
+    .item:nth-of-type(4n+1){
+        background-color: aqua;
+        width: 200px;
+        height: 200px;
+    }
+    .item:nth-of-type(4n+2){
+        background-color: bisque;
+        width: 210px;
+        height: 210px;
+    }
+    .item:nth-of-type(4n+3){
+        background-color: aqua;
+        width: 180px;
+        height: 180px;
+    }
+    .item:nth-of-type(4n+4){
+        background-color: bisque;
+        width: 220px;
+    }
+</style>
+<body>
+    <div>
+        <label>direcion</label>
+        <select id="direction" onchange="update()">
+            <option value="row">row</option>
+            <option value="column">column</option>
+        </select>
+        <label>wrap</label>
+        <select id="wrap" onchange="update()">
+            <option value="nowrap">nowrap</option>
+            <option value="wrap">wrap</option>
+        </select>
+        <label>justify-content</label>
+        <select id="justify-content" onchange="update()">
+            <option value="start">start</option>
+            <option value="end">end</option>
+            <option value="center">center</option>
+            <option value="space-between">space-between</option>
+            <option value="space-around">space-around</option>
+            <option value="space-evenly">space-evenly</option>
+        </select>
+        <label>align-content</label>
+        <select id="align-content" onchange="update()">
+            <option value="stretch">stretch</option>
+            <option value="start">start</option>
+            <option value="end">end</option>
+            <option value="center">center</option>
+            <option value="space-between">space-between</option>
+            <option value="space-around">space-around</option>
+        </select>
+        <label>justify-items</label>
+        <select id="justify-items">
+            <option value="baseline">--</option>
+        </select>
+        <label>align-items</label>
+        <select id="align-items" onchange="update()">
+            <option value="stretch">stretch</option>
+            <option value="start">start</option>
+            <option value="end">end</option>
+            <option value="center">center</option>
+            <option value="baseline">baseline</option>
+        </select>
+        
+        <hr/>
+        <label>basis</label>
+        <select id="basis" onchange="update()">
+            <option value="auto auto auto auto">auto</option>
+            <option value="0 0 0 0">0</option>
+            <option value="100px 100px 100px 100px">100px</option>
+            <option value="200px 200px 200px 200px">200px</option>
+            <option value="300px 300px 300px 300px">300px</option>
+            <option value="0 200px 100px 100px">0 200px 100px 100px</option>
+        </select>
+        <label>grow</label>
+        <select id="grow" onchange="update()">
+            <option value="0 0 0 0">0 0 0 0</option>
+            <option value="1 1 1 1">1 1 1 1</option>
+            <option value="0 1 1 1">0 1 1 1</option>
+            <option value="1 2 1 1">1 2 1 1</option>
+            <option value="0 2 1 1">0 2 1 1</option>
+        </select>
+        <label>shrink</label>
+        <select id="shrink" onchange="update()">
+            <option value="1 1 1 1">1 1 1 1</option>
+            <option value="0 0 0 0">0 0 0 0</option>
+            <option value="0 1 1 1">0 1 1 1</option>
+            <option value="1 2 1 1">1 2 1 1</option>
+            <option value="0 2 1 1">0 2 1 1</option>
+        </select>
+        <label>item3 justify-self</label>
+        <select id="justify-self">
+            <option value="--">--</option>
+        </select>
+        <label>item3 align-self</label>
+        <select id="align-self" onchange="update()">
+            <option value="auto">auto</option>
+            <option value="stretch">stretch</option>
+            <option value="start">start</option>
+            <option value="end">end</option>
+            <option value="center">center</option>
+        </select>
+    </div>
+    <div id="container" class="flex">
+        <div class="item">item1: <p>200x200</p></div>
+        <div class="item">item2: <p>210x210</p></div>
+        <div id="item3" class="item">item3: <p>180x180</div>
+        <div class="item">item4: <p>220xauto</p></div>
+    </div>
+</body>
+<script>
+    function update() {
+        var container = d3.select('#container');
+        container.style('flex-direction', d3.select('#direction').property('value'))
+        container.style('flex-wrap', d3.select('#wrap').property('value'))
+        container.style('justify-content', d3.select('#justify-content').property('value'))
+        container.style('align-items', d3.select('#align-items').property('value'))
+        container.style('align-content', d3.select('#align-content').property('value'))
+        var grows = d3.select('#grow').property('value').split(' ')
+        var shrinks = d3.select('#shrink').property('value').split(' ')
+        var basiss = d3.select('#basis').property('value').split(' ')
+        d3.select('#item3').style('align-self',   d3.select('#align-self').property('value'))
+        for(var i=0; i<4; i++){
+            d3.select(`.item:nth-of-type(4n+${i+1})`).style('flex-grow', grows[i])
+            d3.select(`.item:nth-of-type(4n+${i+1})`).style('flex-shrink', shrinks[i])
+            d3.select(`.item:nth-of-type(4n+${i+1})`).style('flex-basis', basiss[i])
+        }
+        
+        showWidthAndHeight()
+    }
+
+    function showWidthAndHeight(){
+        d3.selectAll('.item').each(function(d,i){
+            var cur = d3.select(this);
+            var width = cur.property('scrollWidth');
+            var height = cur.property('scrollHeight');
+            cur.select('p').text(`${width}x${height}`)
+        })
+    }
+    showWidthAndHeight()
+    window.addEventListener('resize', showWidthAndHeight)
+</script>
+</html>
